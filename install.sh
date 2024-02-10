@@ -20,4 +20,15 @@ install(){
     cp 99-mount_usb.rules /etc/udev/rules.d/99-mount_usb.rules
 }
 
+reload(){
+    toJournal "Reload rules"
+    toConsole "Reload rules"
+    udevadm control --reload-rules
+    toJournal "Reload daemon"
+    toConsole "Reload daemon"
+    systemctl daemon-reload
+}
+
+
 install
+reload
